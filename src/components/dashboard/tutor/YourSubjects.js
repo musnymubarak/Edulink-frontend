@@ -1,66 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Sidebar from "../Sidebar";
 import axios from "axios";
 import Header from "../Header";
 import Footer from "../Footer";
-import EditCourse from "./EditCourse";
 import "../../css/tutor/YourSubjects.css";
 import { Link } from "react-router-dom";
 
 export default function YourSubjects() {
   const [courses, setCourses] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCourseId, setSelectedCourseId] = useState(null);
-  const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        setIsLoading(true);
-        const token = localStorage.getItem("token");
-        if (!token) {
-          alert("Authentication token is missing. Please log in.");
-          return;
-        }
-        const base64Url = token.split(".")[1];
-        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-        const payload = JSON.parse(atob(base64));
-        const tutorId = payload.id;
-        console.log(courses)
-        const response = await axios.get("https://edulink-backend-o9jo.onrender.com/api/v1/courses", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        if (response.data.success) {
-          const tutorCourses = response.data.data.filter(course => course.tutor._id.toString() === tutorId);
-          setCourses(tutorCourses || []);
-        } else {
-          alert("Failed to load courses");
-        }
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-        alert("An error occurred while fetching the courses.");
-      } finally {
-        setIsLoading(false);
+  const fetchCourses = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Authentication token is missing. Please log in.");
+        return;
       }
-    };
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const payload = JSON.parse(atob(base64));
+      const tutorId = payload.id;
+      
+      const response = await axios.get("https://edulink-backend-o9jo.onrender.com/api/v1/courses", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-    fetchCourses();
+      if (response.data.success) {
+        const tutorCourses = response.data.data.filter(course => 
+          course.tutor._id.toString() === tutorId
+        );
+        setCourses(tutorCourses || []);
+      } else {
+        alert("Failed to load courses");
+      }
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+      alert("An error occurred while fetching the courses.");
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchCourses();
+  }, [fetchCourses]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value.toLowerCase());
-  };
-
-  const handleEditCourse = (courseId) => {
-    setSelectedCourseId(courseId);
-    setEditModalOpen(true);
-  };
-
-  const handleCloseEditModal = () => {
-    setEditModalOpen(false);
-    setSelectedCourseId(null);
   };
 
   if (isLoading) {
@@ -108,26 +97,25 @@ export default function YourSubjects() {
                   course.courseDescription.toLowerCase().includes(searchQuery)
               )
               .map((course) => (
-                
                 <Link
-                        to={`/dashboard/tutor/subject/${course._id}`}
-                        //key={i}
-                        className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition duration-200"
-                      >
-                <div key={course._id} className="course-card">
-                  <img
-                    src={course.thumbnail || "https://via.placeholder.com/400x200?text=No+Image"}
-                    alt={course.courseName}
-                    className="course-image"
-                    onError={(e) => {
-                      e.target.src = "https://via.placeholder.com/400x200?text=No+Image";
-                    }}
-                  />
-                  <div className="course-content">
-                    <h3 className="course-title">{course.courseName}</h3>
-                    <p className="course-description">{course.courseDescription}</p>
+                  to={`/dashboard/tutor/subject/${course._id}`}
+                  key={course._id}
+                  className="course-link"
+                >
+                  <div className="course-card">
+                    <img
+                      src={course.thumbnail || "https://via.placeholder.com/400x200?text=No+Image"}
+                      alt={course.courseName}
+                      className="course-image"
+                      onError={(e) => {
+                        e.target.src = "https://via.placeholder.com/400x200?text=No+Image";
+                      }}
+                    />
+                    <div className="course-content">
+                      <h3 className="course-title">{course.courseName}</h3>
+                      <p className="course-description">{course.courseDescription}</p>
+                    </div>
                   </div>
-                </div>
                 </Link>
               ))
           )}

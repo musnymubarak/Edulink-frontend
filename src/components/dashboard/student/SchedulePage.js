@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "../../css/student/SchedulePage.css";
 
 export default function SchedulePage() {
@@ -9,16 +9,13 @@ export default function SchedulePage() {
   const [groupClasses, setGroupClasses] = useState([]);
   const [error, setError] = useState(null);
 
-  // Fetch accepted classes and group classes on component mount
-  useEffect(() => {
-    fetchAcceptedClasses();
-    fetchGroupClasses();
-  }, []);
-
-  // Combine individual and group classes whenever either is updated
-  useEffect(() => {
-    combineClassEvents();
-  }, [groupClasses]);
+  const combineClassEvents = useCallback(() => {
+    const allEvents = [
+      ...events.filter((e) => e.type === "Individual"),
+      ...groupClasses,
+    ];
+    setEvents(allEvents);
+  }, [events, groupClasses]);
 
   const fetchAcceptedClasses = async () => {
     setFetchingClasses(true);
@@ -99,7 +96,6 @@ export default function SchedulePage() {
         return;
       }
 
-      // Directly fetch group classes taught by the logged-in tutor
       const response = await fetch(
         "https://edulink-backend-o9jo.onrender.com/api/v1/classes/my-group-classes-student",
         {
@@ -118,7 +114,7 @@ export default function SchedulePage() {
       }
 
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       if (data.groupClasses && data.groupClasses.length > 0) {
         const transformedGroupClasses = data.groupClasses.map((classItem) => {
           const startTime = new Date(classItem.time);
@@ -140,7 +136,7 @@ export default function SchedulePage() {
             meetLink: classItem.classLink || "",
             type: "Group",
             courseId: classItem.course?._id,
-            studentCount: studentCount
+            studentCount: studentCount,
           };
         });
 
@@ -156,13 +152,14 @@ export default function SchedulePage() {
     }
   };
 
-  const combineClassEvents = () => {
-    const allEvents = [
-      ...events.filter((e) => e.type === "Individual"),
-      ...groupClasses,
-    ];
-    setEvents(allEvents);
-  };
+  useEffect(() => {
+    fetchAcceptedClasses();
+    fetchGroupClasses();
+  }, []);
+
+  useEffect(() => {
+    combineClassEvents();
+  }, [combineClassEvents]);
 
   const goToToday = () => {
     setSelectedDate(new Date());

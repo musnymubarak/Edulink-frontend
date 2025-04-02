@@ -70,7 +70,7 @@ const [loading, setLoading] = useState(false); // Loading state
     }
     setLoading(true);
     try {
-      const response = await axios.put(
+      await axios.put(
         "https://edulink-backend-o9jo.onrender.com/api/v1/profile/change-tutor-password",
         {
           currentPassword: passwordData.currentPassword,
