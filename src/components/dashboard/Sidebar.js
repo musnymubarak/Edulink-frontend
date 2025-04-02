@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { sidebarLinks as LINKS } from "../../data/dashboard-links";
 import SidebarLinks from "./SideBarLinks";
-import { VscSignOut } from "react-icons/vsc";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useAccountType } from "./AccountTypeContext";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
 const Sidebar = () => {
   const [clicked, setClicked] = useState(true); // Default to true to show sidebar initially
   const { accountType } = useAccountType(); // Fetch account type from context
-  const navigate = useNavigate(); // Hook for navigation
 
   // Ensure accountType is in lowercase
   const normalizedAccountType = accountType.toLowerCase();
@@ -44,7 +41,6 @@ const Sidebar = () => {
           );
         })}
       </div>
-
     </div>
   );
 };

@@ -43,7 +43,7 @@ export default function Login() {
       setAccountType(accountType);
       if(accountType.toLowerCase()==='tutor'){
         navigate('/dashboard/tutor/your-subjects')
-      }else if(accountType.toLowerCase()=='student'){
+      }else if(accountType.toLowerCase()==='student'){
         navigate('/dashboard/student/subjects');
       }
       
