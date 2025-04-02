@@ -22,7 +22,7 @@ export default function Dashboard() {
         return;
       }
       
-      const response = await axios.get("http://localhost:4000/api/v1/profile/student", {
+      const response = await axios.get("https://edulink-backend-o9jo.onrender.com/api/v1/profile/student", {
         headers: { Authorization: `Bearer ${token}` },
       });
       
@@ -55,14 +55,14 @@ export default function Dashboard() {
       
       // Fetch both individual and group classes in parallel
       const [individualResponse, groupResponse] = await Promise.all([
-        fetch("http://localhost:4000/api/v1/classes/accepted-classes", {
+        fetch("https://edulink-backend-o9jo.onrender.com/api/v1/classes/accepted-classes", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         }),
-        fetch("http://localhost:4000/api/v1/classes/my-group-classes-student", {
+        fetch("https://edulink-backend-o9jo.onrender.com/api/v1/classes/my-group-classes-student", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

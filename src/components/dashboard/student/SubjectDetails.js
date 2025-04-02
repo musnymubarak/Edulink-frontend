@@ -33,7 +33,7 @@ export default function SubjectDetails() {
     const fetchCourse = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/v1/courses/${id}`
+          `https://edulink-backend-o9jo.onrender.com/api/v1/courses/${id}`
         );
         setCourse(response.data.data);
         const tutorId = response.data.data.tutor._id;
@@ -47,7 +47,7 @@ export default function SubjectDetails() {
     const fetchTutor = async (tutorId) => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/v1/tutor/${tutorId}`
+          `https://edulink-backend-o9jo.onrender.com/api/v1/tutor/${tutorId}`
         );
         setTutor(response.data.data);
       } catch (error) {
@@ -58,7 +58,7 @@ export default function SubjectDetails() {
     const fetchSections = async (courseId) => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/v1/sections/course/${courseId}`
+          `https://edulink-backend-o9jo.onrender.com/api/v1/sections/course/${courseId}`
         );
         setSections(response.data.data);
       } catch (error) {
@@ -69,7 +69,7 @@ export default function SubjectDetails() {
     const fetchRatingsAndReviews = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/v1/rating/${id}`
+          `https://edulink-backend-o9jo.onrender.com/api/v1/rating/${id}`
         );
         setRatingsAndReviews(response.data.data);
       } catch (error) {
@@ -81,7 +81,7 @@ export default function SubjectDetails() {
       try {
         setIsCheckingEnrollment(true);
         const response = await axios.get(
-          "http://localhost:4000/api/v1/profile/student",
+          "https://edulink-backend-o9jo.onrender.com/api/v1/profile/student",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -107,7 +107,7 @@ export default function SubjectDetails() {
   const handleEnroll = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:4000/api/v1/enrollment/enroll/${id}`,
+        `https://edulink-backend-o9jo.onrender.com/api/v1/enrollment/enroll/${id}`,
         {},
         {
           headers: {
@@ -140,7 +140,7 @@ export default function SubjectDetails() {
     try {
       // Add Authorization header to fix the 401 error
       const response = await axios.get(
-        `http://localhost:4000/api/v1/classes/group-classes/${id}`,
+        `https://edulink-backend-o9jo.onrender.com0/api/v1/classes/group-classes/${id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -189,7 +189,7 @@ export default function SubjectDetails() {
 
     try {
       const response = await axios.post(
-        `http://localhost:4000/api/v1/classes/send-request/${id}`,
+        `https://edulink-backend-o9jo.onrender.com/api/v1/classes/send-request/${id}`,
         payload,
         {
           headers: {

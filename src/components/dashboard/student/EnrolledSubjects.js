@@ -35,7 +35,7 @@ export default function EnrolledSubjects() {
         }
 
         const response = await axios.get(
-          "http://localhost:4000/api/v1/enrollment/enrolled-courses",
+          "https://edulink-backend-o9jo.onrender.com/api/v1/enrollment/enrolled-courses",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -74,7 +74,7 @@ export default function EnrolledSubjects() {
       }
 
       const response = await axios.post(
-        `http://localhost:4000/api/v1/enrollment/unenroll/${courseId}`,
+        `https://edulink-backend-o9jo.onrender.com0/api/v1/enrollment/unenroll/${courseId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -127,7 +127,7 @@ export default function EnrolledSubjects() {
       console.log("Submitting rating with payload:", payload);
       
       const response = await axios.post(
-        `http://localhost:4000/api/v1/rating/${courseId}`,
+        `https://edulink-backend-o9jo.onrender.com/api/v1/rating/${courseId}`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );

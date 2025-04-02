@@ -26,7 +26,7 @@ export default function Classes() {
                 return;
             }
 
-            const response = await fetch("http://localhost:4000/api/v1/classes/accepted-classes", {
+            const response = await fetch("https://edulink-backend-o9jo.onrender.com/api/v1/classes/accepted-classes", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

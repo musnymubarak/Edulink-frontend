@@ -23,7 +23,7 @@ export default function Profile() {
   const fetchProfile = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:4000/api/v1/profile/student", {
+      const response = await axios.get("https://edulink-backend-o9jo.onrender.com/api/v1/profile/student", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setProfileData(response.data);

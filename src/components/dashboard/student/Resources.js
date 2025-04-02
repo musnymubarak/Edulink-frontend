@@ -29,7 +29,7 @@ export default function Community() {
 
   // Configure axios with authentication header
   const axiosWithAuth = axios.create({
-    baseURL: "http://localhost:4000/api/v1",
+    baseURL: "https://edulink-backend-o9jo.onrender.com/api/v1",
     headers: {
       Authorization: `Bearer ${token}`
     }

@@ -40,7 +40,7 @@ export default function ReportModal({ isOpen, onClose, courseId }) {
       }
 
       const response = await fetch(
-        `http://localhost:4000/api/v1/report/${courseId}`,
+        `https://edulink-backend-o9jo.onrender.com/api/v1/report/${courseId}`,
         {
           method: "POST",
           headers: {
