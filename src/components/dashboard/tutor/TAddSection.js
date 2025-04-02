@@ -33,7 +33,7 @@ export default function TAddSection() {
           return;
         }
 
-        const response = await axios.get("http://localhost:4000/api/v1/sections/tutor", {
+        const response = await axios.get("https://edulink-backend-o9jo.onrender.com/api/v1/sections/tutor", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -95,7 +95,7 @@ export default function TAddSection() {
       // If your backend expects courseIds as an array, we need to handle that here
       const promises = selectedSections.map(sectionId => {
         // First, get the current section to check if it has courseIds
-        return axios.get(`http://localhost:4000/api/v1/sections/${sectionId}`, {
+        return axios.get(`https://edulink-backend-o9jo.onrender.com/api/v1/sections/${sectionId}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         .then(response => {
@@ -109,7 +109,7 @@ export default function TAddSection() {
           }
           
           // Now update the section with the new courseIds array
-          return axios.put(`http://localhost:4000/api/v1/sections/${sectionId}`, 
+          return axios.put(`https://edulink-backend-o9jo.onrender.com/api/v1/sections/${sectionId}`, 
             { courseIds: updatedCourseIds },
             { headers: { Authorization: `Bearer ${token}` } }
           );

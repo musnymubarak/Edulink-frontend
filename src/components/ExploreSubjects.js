@@ -18,7 +18,7 @@ export default function ExploreSubjects() {
       const fetchSubjects = async () => {
         try {
           const response = await axios.get(
-            "http://localhost:5000/api/v1/courses"
+            "https://edulink-backend-o9jo.onrender.com/api/v1/courses"
           ); // Replace with endpoint
           const data = response.data.data; 
 

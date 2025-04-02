@@ -24,7 +24,7 @@ export default function Login() {
     const password = event.target.password.value;
 
     try {
-      const response = await axios.post("http://localhost:4000/api/v1/auth/login", {
+      const response = await axios.post("https://edulink-backend-o9jo.onrender.com/api/v1/auth/login", {
         email,
         password,
         accountType: field,

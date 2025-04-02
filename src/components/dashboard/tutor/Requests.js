@@ -34,7 +34,7 @@ export default function Requests() {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:4000/api/v1/classes/class-requests",
+          "https://edulink-backend-o9jo.onrender.com/api/v1/classes/class-requests",
           {
             headers: {
               Authorization: `Bearer ${token}`,

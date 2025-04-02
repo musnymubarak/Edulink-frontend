@@ -21,7 +21,7 @@ const EditCourse = ({ courseId, onClose, onUpdate }) => {
         const fetchCourseData = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const response = await axios.get(`http://localhost:4000/api/v1/courses/${courseId}`, {
+                const response = await axios.get(`https://edulink-backend-o9jo.onrender.com/api/v1/courses/${courseId}`, {
                     headers: { Authorization: `Bearer ${token}` },
                     params: { includeFeedback: true },
                 });

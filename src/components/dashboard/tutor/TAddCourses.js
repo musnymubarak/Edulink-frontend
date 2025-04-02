@@ -93,7 +93,7 @@ export default function TAddCourses() {
       const userId = payload.id;
 
       const response = await axios.post(
-        "http://localhost:4000/api/v1/courses/add",
+        "https://edulink-backend-o9jo.onrender.com/api/v1/courses/add",
         { ...formData, tutor: userId },
         {
           headers: { Authorization: `Bearer ${token}` },

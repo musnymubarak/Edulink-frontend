@@ -21,7 +21,7 @@ export default function TNotification() {
         }
 
         const response = await axios.get(
-          "http://localhost:4000/api/v1/notifications/",
+          "https://edulink-backend-o9jo.onrender.com/api/v1/notifications/",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -52,7 +52,7 @@ export default function TNotification() {
       }
       
       await axios.patch(
-        `http://localhost:4000/api/v1/notifications/${notificationId}/read`,
+        `https://edulink-backend-o9jo.onrender.com/api/v1/notifications/${notificationId}/read`,
         {},
         {
           headers: {

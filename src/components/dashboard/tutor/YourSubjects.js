@@ -28,7 +28,7 @@ export default function YourSubjects() {
         const payload = JSON.parse(atob(base64));
         const tutorId = payload.id;
         console.log(courses)
-        const response = await axios.get("http://localhost:4000/api/v1/courses", {
+        const response = await axios.get("https://edulink-backend-o9jo.onrender.com/api/v1/courses", {
           headers: { Authorization: `Bearer ${token}` },
         });
 

@@ -54,7 +54,7 @@ export default function SignUp() {
     try {
       setLoading(true);
       setError(null);
-      await axios.post("http://localhost:4000/api/v1/auth/signup", payload);
+      await axios.post("https://edulink-backend-o9jo.onrender.com/api/v1/auth/signup", payload);
       setSuccessMessage("Signup successful! Redirecting to home...");
       setTimeout(() => {
         setSuccessMessage(null);

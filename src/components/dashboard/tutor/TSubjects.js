@@ -13,7 +13,7 @@ export default function TSubjects() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/v1/courses");
+        const response = await axios.get("https://edulink-backend-o9jo.onrender.com/api/v1/courses");
         const data = response.data.data;
 
         const groupedByCategory = data.reduce((acc, course) => {

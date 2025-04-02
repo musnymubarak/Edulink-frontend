@@ -36,7 +36,7 @@ export default function TDashboard() {
         const tutorId = payload.id; // Extract tutor ID from token
 
         const response = await axios.get(
-          "http://localhost:4000/api/v1/courses",
+          "https://edulink-backend-o9jo.onrender.com/api/v1/courses",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -79,7 +79,7 @@ export default function TDashboard() {
 
       // Use the acceptedClasses endpoint to get upcoming sessions
       const response = await fetch(
-        "http://localhost:4000/api/v1/classes/accepted-classes",
+        "https://edulink-backend-o9jo.onrender.com/api/v1/classes/accepted-classes",
         {
           method: "GET",
           headers: {
@@ -157,7 +157,7 @@ export default function TDashboard() {
       const ratingsPromises = courses.map(async (course) => {
         try {
           const response = await axios.get(
-            `http://localhost:4000/api/v1/rating/${course._id}`,
+            `https://edulink-backend-o9jo.onrender.com/api/v1/rating/${course._id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -240,7 +240,7 @@ export default function TDashboard() {
       }
 
       const response = await axios.get(
-        "http://localhost:4000/api/v1/classes/class-requests",
+        "https://edulink-backend-o9jo.onrender.com/api/v1/classes/class-requests",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -261,7 +261,7 @@ export default function TDashboard() {
                 // Check if course ID exists before making the second request
                 if (req.course && req.course._id) {
                   const courseResponse = await axios.get(
-                    `http://localhost:4000/api/v1/courses/${req.course._id}`,
+                    `https://edulink-backend-o9jo.onrender.com/api/v1/courses/${req.course._id}`,
                     {
                       headers: {
                         Authorization: `Bearer ${token}`,
@@ -361,7 +361,7 @@ export default function TDashboard() {
       const tutorId = payload.id; // Extract tutor ID from token
 
       const response = await axios.get(
-        `http://localhost:4000/api/v1/tutor/${tutorId}/enrolled-students`,
+        `https://edulink-backend-o9jo.onrender.com/api/v1/tutor/${tutorId}/enrolled-students`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -392,7 +392,7 @@ export default function TDashboard() {
 
       // Make the API request
       await axios.post(
-        `http://localhost:4000/api/v1/classes/handle-request/${requestId}`,
+        `https://edulink-backend-o9jo.onrender.com/api/v1/classes/handle-request/${requestId}`,
         { status },
         {
           headers: {

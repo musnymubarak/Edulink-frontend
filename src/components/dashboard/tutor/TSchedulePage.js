@@ -33,7 +33,7 @@ export default function TSchedulePage() {
       }
 
       const response = await fetch(
-        "http://localhost:4000/api/v1/classes/accepted-classes",
+        "https://edulink-backend-o9jo.onrender.com/api/v1/classes/accepted-classes",
         {
           method: "GET",
           headers: {
@@ -101,7 +101,7 @@ export default function TSchedulePage() {
 
       // Directly fetch group classes taught by the logged-in tutor
       const response = await fetch(
-        "http://localhost:4000/api/v1/classes/my-group-classes",
+        "https://edulink-backend-o9jo.onrender.com/api/v1/classes/my-group-classes",
         {
           method: "GET",
           headers: {

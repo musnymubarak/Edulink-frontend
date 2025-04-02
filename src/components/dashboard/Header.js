@@ -18,7 +18,7 @@ const Header = () => {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const response = await axios.get("http://localhost:4000/api/v1/notifications/", {
+        const response = await axios.get("https://edulink-backend-o9jo.onrender.com/api/v1/notifications/", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

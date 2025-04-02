@@ -16,7 +16,7 @@ export default function ExploreSingleCourse() {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/v1/courses/${id}`);
+        const response = await axios.get(`https://edulink-backend-o9jo.onrender.com/api/v1/courses/${id}`);
         setCourse(response.data.data);  
       } catch (error) {
         console.error("Error fetching course:", error);

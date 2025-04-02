@@ -22,7 +22,7 @@ export default function TSection() {
         }
 
         const response = await axios.get(
-          `http://localhost:4000/api/v1/sections/${sectionId}`,
+          `https://edulink-backend-o9jo.onrender.com/api/v1/sections/${sectionId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

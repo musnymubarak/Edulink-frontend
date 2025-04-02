@@ -130,7 +130,7 @@ const TAddNewSection = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:4000/api/v1/sections/add",
+        "https://edulink-backend-o9jo.onrender.com/api/v1/sections/add",
         formData,
         {
           headers: {

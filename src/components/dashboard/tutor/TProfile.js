@@ -23,7 +23,7 @@ const [loading, setLoading] = useState(false); // Loading state
   const fetchProfile = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:4000/api/v1/profile/tutor", {
+      const response = await axios.get("https://edulink-backend-o9jo.onrender.com/api/v1/profile/tutor", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setProfileData(response.data);
@@ -46,7 +46,7 @@ const [loading, setLoading] = useState(false); // Loading state
     setLoading(true);
     try {
       const response = await axios.put(
-        "http://localhost:4000/api/v1/profile/tutor",
+        "https://edulink-backend-o9jo.onrender.com/api/v1/profile/tutor",
         formData,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -71,7 +71,7 @@ const [loading, setLoading] = useState(false); // Loading state
     setLoading(true);
     try {
       const response = await axios.put(
-        "http://localhost:4000/api/v1/profile/change-tutor-password",
+        "https://edulink-backend-o9jo.onrender.com/api/v1/profile/change-tutor-password",
         {
           currentPassword: passwordData.currentPassword,
           newPassword: passwordData.newPassword,
@@ -114,7 +114,7 @@ const [loading, setLoading] = useState(false); // Loading state
       console.log(uploadedImageURL);
 
       // Send the image URL to the backend to update the profile image
-      const backendResponse = await fetch("http://localhost:4000/api/v1/profile/update-image", {
+      const backendResponse = await fetch("https://edulink-backend-o9jo.onrender.com/api/v1/profile/update-image", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
