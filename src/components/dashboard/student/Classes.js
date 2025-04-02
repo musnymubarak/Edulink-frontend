@@ -97,7 +97,6 @@ export default function Classes() {
 
     const transformClassData = (classItem) => {
         // Check if it's a group class with participants
-        const participants = classItem.participants || [];
         
         return {
             id: classItem._id,
