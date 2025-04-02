@@ -45,7 +45,7 @@ export default function Profile() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.put(
+      const { data } = await axios.put(
         "http://localhost:4000/api/v1/profile/student",
         formData,
         {
@@ -53,7 +53,7 @@ export default function Profile() {
         }
       );
       alert("Profile updated successfully!");
-      setProfileData(response.data.profile); // Update profile state with new data
+      setProfileData(data.profile); // Update profile state with new data
     } catch (error) {
       console.error("Error updating profile:", error);
       alert("Failed to update profile. Please try again.");
@@ -70,7 +70,7 @@ export default function Profile() {
     }
     setLoading(true);
     try {
-      const response = await axios.put(
+      await axios.put(
         "http://localhost:4000/api/v1/profile/change-student-password",
         {
           currentPassword: passwordData.currentPassword,
@@ -287,7 +287,7 @@ export default function Profile() {
                   className="bg-green-600 text-white px-6 py-2 rounded-md shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
                   onClick={updatePassword}
                 >
-                  Update Password
+                  Change Password
                 </button>
               </div>
             </form>

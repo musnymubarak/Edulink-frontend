@@ -23,8 +23,6 @@ export default function EnrolledSubjects() {
   const [rating, setRating] = useState("");
   const [feedback, setFeedback] = useState("");
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     const fetchEnrolledCourses = async () => {
       try {
