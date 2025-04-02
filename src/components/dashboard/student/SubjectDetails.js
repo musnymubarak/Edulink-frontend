@@ -140,7 +140,7 @@ export default function SubjectDetails() {
     try {
       // Add Authorization header to fix the 401 error
       const response = await axios.get(
-        `https://edulink-backend-o9jo.onrender.com0/api/v1/classes/group-classes/${id}`,
+        `https://edulink-backend-o9jo.onrender.com/api/v1/classes/group-classes/${id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

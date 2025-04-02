@@ -130,7 +130,7 @@ export default function Requests() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        `http://localhost:4000/api/v1/classes/handle-request/${id}`,
+        `https://edulink-backend-o9jo.onrender.com/api/v1/classes/handle-request/${id}`,
         { status: action },
         {
           headers: {
@@ -207,7 +207,7 @@ export default function Requests() {
       };
 
       const response = await axios.post(
-        `http://localhost:4000/api/v1/classes/handle-request/${requestId}`,
+        `https://edulink-backend-o9jo.onrender.com/api/v1/classes/handle-request/${requestId}`,
         requestData,
         {
           headers: {
