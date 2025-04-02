@@ -41,7 +41,7 @@ export default function Login() {
 
       localStorage.setItem("token", token);
       setAccountType(accountType);
-      if(accountType.toLowerCase()=='tutor'){
+      if(accountType.toLowerCase()==='tutor'){
         navigate('/dashboard/tutor/your-subjects')
       }else if(accountType.toLowerCase()=='student'){
         navigate('/dashboard/student/subjects');
