@@ -9,8 +9,6 @@ import { Link } from "react-router-dom";
 export default function YourSubjects() {
   const [courses, setCourses] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [ setSelectedCourseId] = useState(null);
-  const [ setEditModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
