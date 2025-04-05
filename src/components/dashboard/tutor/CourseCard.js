@@ -31,7 +31,7 @@ const CourseCard = ({
     meetLink,
     duration
 }) => {
-    const [showDetails, setShowDetails] = useState(false);
+    const [showDetails] = useState(false);
     
     const formattedDate = formatDate(time);
     const isGroupClass = type === "Group";

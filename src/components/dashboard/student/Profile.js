@@ -70,7 +70,7 @@ export default function Profile() {
     }
     setLoading(true);
     try {
-      const response = await axios.put(
+      await axios.put(
         "https://edulink-backend-o9jo.onrender.com/api/v1/profile/change-student-password",
         {
           currentPassword: passwordData.currentPassword,
@@ -142,7 +142,7 @@ export default function Profile() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <Header/>
+      <Header />
       {/* Sidebar */}
       <div className="fixed top-0 left-0 w-64 h-screen bg-richblue-800 border-r border-richblack-700">
         <Sidebar />
@@ -164,7 +164,7 @@ export default function Profile() {
                 alt="Profile"
                 className="w-32 h-32 rounded-full object-cover border-2 border-richblue-800"
               />
-              <br/>
+              <br />
               <label className="text-black bg-slate-500 p-2 border border-black rounded shadow-lg hover:shadow-2xl">
                 Upload Profile Picture
                 <input
@@ -294,7 +294,7 @@ export default function Profile() {
           </div>
         )}
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

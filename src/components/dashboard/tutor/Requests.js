@@ -3,7 +3,6 @@ import axios from "axios";
 import Sidebar from "../Sidebar";
 import Header from "../Header";
 import Footer from "../Footer";
-import { useNavigate } from "react-router-dom";
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
@@ -12,7 +11,6 @@ export default function Requests() {
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const navigate = useNavigate();
   const [classDetailsModal, setClassDetailsModal] = useState({
     show: false,
     type: "",
@@ -261,9 +259,6 @@ export default function Requests() {
     }
   };
 
-  const gotoSchedule = () => {
-    navigate("/dashboard/tutor/schedule");
-  };
 
   // Pagination logic
   const indexOfLastRequest = currentPage * requestsPerPage;

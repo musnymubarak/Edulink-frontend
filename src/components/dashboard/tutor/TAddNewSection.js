@@ -10,7 +10,6 @@ const TAddNewSection = () => {
   const [sectionName, setSectionName] = useState("");
   const [videoFile, setVideoFile] = useState(null);
   const navigate = useNavigate();
-  const [courseIds, setCourseIds] = useState([]);
   const [quiz, setQuiz] = useState([
     {
       questionText: "",

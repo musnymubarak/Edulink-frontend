@@ -3,15 +3,14 @@ import Sidebar from "../Sidebar";
 import axios from "axios";
 import Header from "../Header";
 import Footer from "../Footer";
-import EditCourse from "./EditCourse";
 import "../../css/tutor/YourSubjects.css";
 import { Link } from "react-router-dom";
 
 export default function YourSubjects() {
   const [courses, setCourses] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCourseId, setSelectedCourseId] = useState(null);
-  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [ setSelectedCourseId] = useState(null);
+  const [ setEditModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -27,7 +26,7 @@ export default function YourSubjects() {
         const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
         const payload = JSON.parse(atob(base64));
         const tutorId = payload.id;
-        console.log(courses)
+        
         const response = await axios.get("https://edulink-backend-o9jo.onrender.com/api/v1/courses", {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -47,20 +46,11 @@ export default function YourSubjects() {
     };
 
     fetchCourses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value.toLowerCase());
-  };
-
-  const handleEditCourse = (courseId) => {
-    setSelectedCourseId(courseId);
-    setEditModalOpen(true);
-  };
-
-  const handleCloseEditModal = () => {
-    setEditModalOpen(false);
-    setSelectedCourseId(null);
   };
 
   if (isLoading) {
@@ -108,26 +98,25 @@ export default function YourSubjects() {
                   course.courseDescription.toLowerCase().includes(searchQuery)
               )
               .map((course) => (
-                
                 <Link
-                        to={`/dashboard/tutor/subject/${course._id}`}
-                        //key={i}
-                        className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition duration-200"
-                      >
-                <div key={course._id} className="course-card">
-                  <img
-                    src={course.thumbnail || "https://via.placeholder.com/400x200?text=No+Image"}
-                    alt={course.courseName}
-                    className="course-image"
-                    onError={(e) => {
-                      e.target.src = "https://via.placeholder.com/400x200?text=No+Image";
-                    }}
-                  />
-                  <div className="course-content">
-                    <h3 className="course-title">{course.courseName}</h3>
-                    <p className="course-description">{course.courseDescription}</p>
+                  to={`/dashboard/tutor/subject/${course._id}`}
+                  className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition duration-200"
+                  key={course._id}
+                >
+                  <div className="course-card">
+                    <img
+                      src={course.thumbnail || "https://via.placeholder.com/400x200?text=No+Image"}
+                      alt={course.courseName}
+                      className="course-image"
+                      onError={(e) => {
+                        e.target.src = "https://via.placeholder.com/400x200?text=No+Image";
+                      }}
+                    />
+                    <div className="course-content">
+                      <h3 className="course-title">{course.courseName}</h3>
+                      <p className="course-description">{course.courseDescription}</p>
+                    </div>
                   </div>
-                </div>
                 </Link>
               ))
           )}

@@ -106,7 +106,7 @@ export default function SubjectDetails() {
 
   const handleEnroll = async () => {
     try {
-      const response = await axios.post(
+      await axios.post(
         `https://edulink-backend-o9jo.onrender.com/api/v1/enrollment/enroll/${id}`,
         {},
         {
@@ -188,7 +188,7 @@ export default function SubjectDetails() {
     }
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `https://edulink-backend-o9jo.onrender.com/api/v1/classes/send-request/${id}`,
         payload,
         {
@@ -245,7 +245,6 @@ export default function SubjectDetails() {
     );
   }
 
-  const category = course.category?.name || "Uncategorized";
 
   // Fix rendering of group class options
   const renderGroupClassOptions = () => {
@@ -381,9 +380,8 @@ export default function SubjectDetails() {
                     <button
                       onClick={goToPrevPage}
                       disabled={currentPage === 1}
-                      className={`pagination-button ${
-                        currentPage === 1 ? "pagination-button-disabled" : ""
-                      }`}
+                      className={`pagination-button ${currentPage === 1 ? "pagination-button-disabled" : ""
+                        }`}
                     >
                       Previous
                     </button>
@@ -393,11 +391,10 @@ export default function SubjectDetails() {
                     <button
                       onClick={goToNextPage}
                       disabled={currentPage === totalPages}
-                      className={`pagination-button ${
-                        currentPage === totalPages
+                      className={`pagination-button ${currentPage === totalPages
                           ? "pagination-button-disabled"
                           : ""
-                      }`}
+                        }`}
                     >
                       Next
                     </button>
@@ -535,9 +532,8 @@ export default function SubjectDetails() {
                 </button>
                 <button
                   type="submit"
-                  className={`button button-submit ${
-                    isSubmitting ? "opacity-50" : ""
-                  }`}
+                  className={`button button-submit ${isSubmitting ? "opacity-50" : ""
+                    }`}
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "Submit"}

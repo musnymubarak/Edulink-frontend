@@ -15,9 +15,10 @@ export default function TSchedulePage() {
     fetchGroupClasses();
   }, []);
 
-  // Combine individual and group classes whenever either is updated
+  // Combine classes when groupClasses updates
   useEffect(() => {
     combineClassEvents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groupClasses]);
 
   const fetchAcceptedClasses = async () => {
@@ -99,7 +100,6 @@ export default function TSchedulePage() {
         return;
       }
 
-      // Directly fetch group classes taught by the logged-in tutor
       const response = await fetch(
         "https://edulink-backend-o9jo.onrender.com/api/v1/classes/my-group-classes",
         {

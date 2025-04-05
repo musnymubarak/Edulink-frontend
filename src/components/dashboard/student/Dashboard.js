@@ -7,7 +7,7 @@ import "../../css/student/Dashboard.css";
 
 export default function Dashboard() {
   const [userName, setUserName] = useState("");
-  const [upcomingClasses, setUpcomingClasses] = useState([]);
+  const [ setUpcomingClasses] = useState([]);
   const [nextClass, setNextClass] = useState(null);
   const [loading, setLoading] = useState(true);
   const [coursesCount, setCoursesCount] = useState(0);
@@ -134,6 +134,7 @@ export default function Dashboard() {
   useEffect(() => {
     fetchUserData();
     fetchUpcomingClasses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Format date and time for display

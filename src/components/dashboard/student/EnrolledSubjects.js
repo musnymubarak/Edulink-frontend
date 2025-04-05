@@ -3,7 +3,6 @@ import RatingModal from "./RatingModal";
 import ReportModal from "./ReportModel"; // Import the new ReportModal component
 import Sidebar from "../Sidebar";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
 import "../../css/student/EnrolledSubject.css";
@@ -22,8 +21,6 @@ export default function EnrolledSubjects() {
   });
   const [rating, setRating] = useState("");
   const [feedback, setFeedback] = useState("");
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEnrolledCourses = async () => {
