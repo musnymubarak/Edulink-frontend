@@ -106,7 +106,7 @@ export default function SubjectDetails() {
 
   const handleEnroll = async () => {
     try {
-      await axios.post(
+      const response = await axios.post(
         `https://edulink-backend-o9jo.onrender.com/api/v1/enrollment/enroll/${id}`,
         {},
         {
@@ -188,7 +188,7 @@ export default function SubjectDetails() {
     }
 
     try {
-      await axios.post(
+      const response = await axios.post(
         `https://edulink-backend-o9jo.onrender.com/api/v1/classes/send-request/${id}`,
         payload,
         {
@@ -245,6 +245,9 @@ export default function SubjectDetails() {
     );
   }
 
+  const category = course.category?.name || "Uncategorized";
+
+  // Fix rendering of group class options
   const renderGroupClassOptions = () => {
     if (!availableGroupTimes || availableGroupTimes.length === 0) {
       return <option value="">No available group classes</option>;

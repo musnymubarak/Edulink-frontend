@@ -59,7 +59,7 @@ export default function Classes() {
             }
 
             // Use the same endpoint as in TSchedulePage to get only logged-in tutor's group classes
-            const response = await fetch("http://localhost:4000/api/v1/classes/my-group-classes-student", {
+            const response = await fetch("https://edulink-backend-o9jo.onrender.com/api/v1/classes/my-group-classes-student", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -97,6 +97,7 @@ export default function Classes() {
 
     const transformClassData = (classItem) => {
         // Check if it's a group class with participants
+        const participants = classItem.participants || [];
         
         return {
             id: classItem._id,

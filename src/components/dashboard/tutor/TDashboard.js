@@ -222,7 +222,12 @@ export default function TDashboard() {
       console.error("Error in fetchCourseRatings:", error);
     }
   };
-  
+
+  // Debug function
+  const logRequestData = (data) => {
+    console.log("Request data structure:", JSON.stringify(data, null, 2));
+  };
+
   // Fetch class requests with course details
   const fetchClassRequests = async () => {
     try {

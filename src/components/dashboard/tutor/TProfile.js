@@ -46,7 +46,7 @@ const [loading, setLoading] = useState(false); // Loading state
     setLoading(true);
     try {
       const response = await axios.put(
-        "https://edulink-backend-o9jo.onrender.com/api/v1/profile/tutor",
+        "http://localhost:4000/api/v1/profile/tutor",
         formData,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -70,7 +70,7 @@ const [loading, setLoading] = useState(false); // Loading state
     }
     setLoading(true);
     try {
-      await axios.put(
+      const response = await axios.put(
         "https://edulink-backend-o9jo.onrender.com/api/v1/profile/change-tutor-password",
         {
           currentPassword: passwordData.currentPassword,

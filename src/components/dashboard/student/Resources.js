@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "../Sidebar";
 import Header from "../Header";
@@ -31,8 +31,8 @@ export default function Community() {
   const axiosWithAuth = axios.create({
     baseURL: "https://edulink-backend-o9jo.onrender.com/api/v1",
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      Authorization: `Bearer ${token}`
+    }
   });
 
   // Fetch all published courses
@@ -57,10 +57,18 @@ export default function Community() {
       setError("Please log in to access communities");
       setLoading(false);
     }
-  }, [token, axiosWithAuth]); // Add axiosWithAuth to the dependency array
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
 
-  // Use useCallback to memoize the fetchMessages function
-  const fetchMessages = useCallback(async (courseId) => {
+  // Fetch messages when a community (course) is selected
+  useEffect(() => {
+    if (selectedCommunity && token) {
+      fetchMessages(selectedCommunity._id);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCommunity, token]);
+
+  const fetchMessages = async (courseId) => {
     if (!courseId || !userId || !token) return;
 
     try {
@@ -76,14 +84,7 @@ export default function Community() {
       }
       setMessages([]);
     }
-  }, [axiosWithAuth, token, userId]); // Make sure to add necessary dependencies to the dependency array
-
-  // Fetch messages when a community (course) is selected
-  useEffect(() => {
-    if (selectedCommunity && token) {
-      fetchMessages(selectedCommunity._id);
-    }
-  }, [selectedCommunity, token, fetchMessages]); // Add fetchMessages to the dependency array
+  };
 
   const handleSelectCommunity = (course) => {
     setSelectedCommunity(course);
@@ -166,9 +167,8 @@ export default function Community() {
                   {filteredCourses.map((course) => (
                     <li
                       key={course._id}
-                      className={`bg-gray-100 p-4 mb-4 rounded cursor-pointer hover:bg-blue-100 ${
-                        selectedCommunity?._id === course._id ? "border-2 border-blue-500" : ""
-                      }`}
+                      className={`bg-gray-100 p-4 mb-4 rounded cursor-pointer hover:bg-blue-100 ${selectedCommunity?._id === course._id ? "border-2 border-blue-500" : ""
+                        }`}
                       onClick={() => handleSelectCommunity(course)}
                     >
                       <div className="font-bold">{course.courseName}</div>
@@ -230,9 +230,8 @@ export default function Community() {
 
                 <button
                   onClick={handleSendMessage}
-                  className={`text-white px-4 py-2 rounded-full ${
-                    error ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 hover:bg-green-600"
-                  }`}
+                  className={`text-white px-4 py-2 rounded-full ${error ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 hover:bg-green-600"
+                    }`}
                   disabled={!!error}
                 >
                   Send Message

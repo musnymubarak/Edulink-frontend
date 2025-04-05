@@ -3,6 +3,7 @@ import RatingModal from "./RatingModal";
 import ReportModal from "./ReportModel"; // Import the new ReportModal component
 import Sidebar from "../Sidebar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
 import "../../css/student/EnrolledSubject.css";
@@ -21,6 +22,8 @@ export default function EnrolledSubjects() {
   });
   const [rating, setRating] = useState("");
   const [feedback, setFeedback] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEnrolledCourses = async () => {
@@ -71,7 +74,7 @@ export default function EnrolledSubjects() {
       }
 
       const response = await axios.post(
-        `https://edulink-backend-o9jo.onrender.com0/api/v1/enrollment/unenroll/${courseId}`,
+        `https://edulink-backend-o9jo.onrender.com/api/v1/enrollment/unenroll/${courseId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -45,15 +45,15 @@ export default function Profile() {
     e.preventDefault();
     setLoading(true);
     try {
-      const { data } = await axios.put(
-        "http://localhost:4000/api/v1/profile/student",
+      const response = await axios.put(
+        "https://edulink-backend-o9jo.onrender.com/api/v1/profile/student",
         formData,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
       alert("Profile updated successfully!");
-      setProfileData(data.profile); // Update profile state with new data
+      setProfileData(response.data.profile); // Update profile state with new data
     } catch (error) {
       console.error("Error updating profile:", error);
       alert("Failed to update profile. Please try again.");
@@ -70,8 +70,8 @@ export default function Profile() {
     }
     setLoading(true);
     try {
-      await axios.put(
-        "http://localhost:4000/api/v1/profile/change-student-password",
+      const response = await axios.put(
+        "https://edulink-backend-o9jo.onrender.com/api/v1/profile/change-student-password",
         {
           currentPassword: passwordData.currentPassword,
           newPassword: passwordData.newPassword,
@@ -114,7 +114,7 @@ export default function Profile() {
       console.log(uploadedImageURL);
 
       // Send the image URL to the backend to update the profile image
-      const backendResponse = await fetch("http://localhost:4000/api/v1/profile/update-image", {
+      const backendResponse = await fetch("https://edulink-backend-o9jo.onrender.com/api/v1/profile/update-image", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -287,7 +287,7 @@ export default function Profile() {
                   className="bg-green-600 text-white px-6 py-2 rounded-md shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
                   onClick={updatePassword}
                 >
-                  Change Password
+                  Update Password
                 </button>
               </div>
             </form>

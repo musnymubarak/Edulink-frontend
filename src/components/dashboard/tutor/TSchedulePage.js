@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/student/SchedulePage.css";
 
 export default function TSchedulePage() {
@@ -9,22 +9,16 @@ export default function TSchedulePage() {
   const [groupClasses, setGroupClasses] = useState([]);
   const [error, setError] = useState(null);
 
-  const combineClassEvents = useCallback(() => {
-    const allEvents = [
-      ...events.filter((e) => e.type === "Individual"),
-      ...groupClasses,
-    ];
-    setEvents(allEvents);
-  }, [events, groupClasses]);
-
+  // Fetch accepted classes and group classes on component mount
   useEffect(() => {
     fetchAcceptedClasses();
     fetchGroupClasses();
   }, []);
 
+  // Combine individual and group classes whenever either is updated
   useEffect(() => {
     combineClassEvents();
-  }, [combineClassEvents]);
+  }, [groupClasses]);
 
   const fetchAcceptedClasses = async () => {
     setFetchingClasses(true);
@@ -105,6 +99,7 @@ export default function TSchedulePage() {
         return;
       }
 
+      // Directly fetch group classes taught by the logged-in tutor
       const response = await fetch(
         "https://edulink-backend-o9jo.onrender.com/api/v1/classes/my-group-classes",
         {
@@ -159,6 +154,14 @@ export default function TSchedulePage() {
     } finally {
       setFetchingClasses(false);
     }
+  };
+
+  const combineClassEvents = () => {
+    const allEvents = [
+      ...events.filter((e) => e.type === "Individual"),
+      ...groupClasses,
+    ];
+    setEvents(allEvents);
   };
 
   const goToToday = () => {
