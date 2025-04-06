@@ -104,7 +104,7 @@ const EditCourse = ({ courseId, onClose, onUpdate }) => {
         const token = localStorage.getItem("token");
 
         try {
-            const response = await axios.put(`http://localhost:4000/api/v1/courses/${courseId}`, {
+            const response = await axios.put(`https://edulink-backend-o9jo.onrender.com/api/v1/courses/${courseId}`, {
                 category: courseData.categoryName,
                 courseName: courseData.courseName,
                 whatYouWillLearn: courseData.whatYouWillLearn,
